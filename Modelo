@@ -42,7 +42,7 @@ CREATE TABLE Funcionario(
   );
 
    
-----  Criando entidade servico---
+----  Criando entidade serviço---
 
    
 CREATE TABLE Serviço(
@@ -66,7 +66,7 @@ ALTER TABLE Funcionario
 DROP COLUMN Id_Veiculo;
 
 
------criando entidade ordem de servico---
+-----Criando entidade ordem de serviço---
 
 
 CREATE TABLE Ordem_de_serviço(
@@ -93,7 +93,7 @@ CREATE TABLE Ordem_de_serviço(
   );
 
 
------criando entidade peca---
+-----Criando entidade peça---
  
 CREATE TABLE Peça( 
   Idpeça INT AUTO_INCREMENT PRIMARY KEY,
@@ -107,7 +107,7 @@ CREATE TABLE Peça(
   );
 
 
-------criando entidade item da ordem de servico---
+------Criando entidade item da ordem de serviço---
 
 CREATE TABLE Item_os(
   ID_ordem INT NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE Item_os(
 );
 
 
------criando entidade item peca da ordem de servico----
+-----Criando entidade item peça da ordem de serviço----
 
 
  CREATE TABLE Item_peça( 
@@ -153,7 +153,7 @@ CREATE TABLE Item_os(
    );
 
 
-------criando entidade de pagamento----
+------Criando entidade de pagamento----
   
 CREATE TABLE Pagamentos(
   Idpagamento INT AUTO_INCREMENT PRIMARY KEY,
@@ -167,4 +167,11 @@ CREATE TABLE Pagamentos(
     REFERENCES Ordem_de_serviço(Id_os)
   );
   
-  
+
+------Alterações na entidade serviços,percebi que estava com muitas casas decimais no preço-----
+
+UPDATE Serviço
+SET Preço = TRUNCATE(Preço,2);
+
+ALTER TABLE Serviço
+MODIFY Preço DECIMAL(10,2);
